@@ -11,8 +11,8 @@ import {
 } from "../../selectors";
 import { getScopes } from "../../utils/scopes";
 
-import _ObjectInspector from "../shared/ObjectInspector";
-const ObjectInspector = createFactory(_ObjectInspector);
+import Reps from "devtools-reps";
+const ObjectInspector = createFactory(Reps.ObjectInspector);
 
 import "./Scopes.css";
 
@@ -59,8 +59,16 @@ class Scopes extends PureComponent {
     if (scopes) {
       scopeInspector = ObjectInspector({
         roots: scopes,
+        autoExpandDepth: 1,
+        disableWrap: true,
+        disabledFocus: true,
+        // TODO: Unsuported in devtools-reps 0.11
+        dimTopLevelWindow: true,
         getObjectProperties: id => loadedObjects[id],
-        loadObjectProperties: loadObjectProperties
+        loadObjectProperties: loadObjectProperties,
+        // TODO: See https://github.com/devtools-html/debugger.html/issues/3555.
+        getObjectEntries: actor => {},
+        loadObjectEntries: grip => {}
       });
     }
 

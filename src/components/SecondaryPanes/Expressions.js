@@ -12,8 +12,8 @@ import {
 import _CloseButton from "../shared/Button/Close";
 const CloseButton = createFactory(_CloseButton);
 
-import _ObjectInspector from "../shared/ObjectInspector";
-const ObjectInspector = createFactory(_ObjectInspector);
+import Reps from "devtools-reps";
+const ObjectInspector = createFactory(Reps.ObjectInspector);
 
 import "./Expressions.css";
 
@@ -183,11 +183,16 @@ class Expressions extends PureComponent {
         { className: "expression-content" },
         ObjectInspector({
           roots: [root],
-          getObjectProperties: id => loadedObjects[id],
           autoExpandDepth: 0,
+          disableWrap: true,
+          disabledFocus: true,
           onDoubleClick: (item, options) =>
             this.editExpression(expression, options),
-          loadObjectProperties
+          getObjectProperties: id => loadedObjects[id],
+          loadObjectProperties,
+          // TODO: See https://github.com/devtools-html/debugger.html/issues/3555.
+          getObjectEntries: actor => {},
+          loadObjectEntries: grip => {}
         }),
         dom.div(
           { className: "expression-container__close-btn" },

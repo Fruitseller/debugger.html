@@ -5,8 +5,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { isEnabled } from "devtools-config";
 
-import _ObjectInspector from "../shared/ObjectInspector";
-const ObjectInspector = createFactory(_ObjectInspector);
+import Reps from "devtools-reps";
+const { REPS: { Rep }, MODE } = Reps;
+const ObjectInspector = createFactory(Reps.ObjectInspector);
+const { getChildren } = ObjectInspector;
 
 import _Popover from "../shared/Popover";
 const Popover = createFactory(_Popover);
@@ -14,10 +16,7 @@ const Popover = createFactory(_Popover);
 import previewFunction from "../shared/previewFunction";
 import { getLoadedObjects } from "../../selectors";
 import actions from "../../actions";
-import { getChildren } from "../../utils/object-inspector";
 import { markText } from "../../utils/editor";
-import Rep from "../shared/Rep";
-import { MODE } from "devtools-reps";
 
 import type { EditorRange } from "../../utils/editor/types";
 
@@ -113,10 +112,14 @@ class Preview extends Component {
 
     return ObjectInspector({
       roots,
-      getObjectProperties,
       autoExpandDepth: 0,
-      onDoubleClick: () => {},
-      loadObjectProperties
+      disableWrap: true,
+      disabledFocus: true,
+      getObjectProperties,
+      loadObjectProperties,
+      // TODO: See https://github.com/devtools-html/debugger.html/issues/3555.
+      getObjectEntries: actor => {},
+      loadObjectEntries: grip => {}
     });
   }
 
