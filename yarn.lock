@@ -2506,9 +2506,9 @@ devtools-modules@^0.0.28:
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/devtools-modules/-/devtools-modules-0.0.28.tgz#5b3498a4844675daedc3c7128a95ba011431eb46"
 
-devtools-reps@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/devtools-reps/-/devtools-reps-0.10.0.tgz#58ab501d793ae7901f128f6d1dee9b82a728b710"
+devtools-reps@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/devtools-reps/-/devtools-reps-0.11.0.tgz#b21efa1889fce944db393806a09ac7ffe6f9364e"
   dependencies:
     classnames "^2.2.5"
     devtools-components "^0.0.1"
@@ -3423,7 +3423,7 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-flow-bin@0.52.0:
+flow-bin@^0.52.0:
   version "0.52.0"
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.52.0.tgz#b6d9abe8bcd1ee5c62df386451a4e2553cadc3a3"
 
